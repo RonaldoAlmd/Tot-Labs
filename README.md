@@ -92,19 +92,55 @@ Depois, na Vercel: **Settings → Domains → Add** e aponte o DNS conforme as i
 
 Está tudo em `index.html`, na ordem em que aparece na tela. As seções estão marcadas por comentários:
 
-| Comentário          | Seção                                                        |
-|---------------------|--------------------------------------------------------------|
-| `01 HERO`           | Título de abertura                                            |
-| `02 SINAL 95 → 5`   | Contador animado de 95% para 5%                               |
-| `03 MANIFESTO`      | Texto que acende palavra por palavra                          |
-| `04 ORQUESTRA`      | Os três movimentos do método                                  |
-| `05 DADOS`          | Percentuais e a matriz de 100 pontos                          |
-| `06 FLUENC.IA`      | Programa + card do ingresso                                   |
-| `07 EM CAMPO`       | Carrossel 3D (os cards vêm do array `cards` no JavaScript)     |
-| `08 AMAZONIA`       | Latitude 0° e a lista de parceiros                            |
-| `09 LIDERES`        | Diretoria                                                     |
-| `10 RECURSOS`       | E-book, podcast e entrevista                                  |
-| `11 CTA`            | Chamada final                                                 |
+| Comentário              | Seção                                                          |
+|-------------------------|----------------------------------------------------------------|
+| `01 HERO`               | Título de abertura                                              |
+| `02 SHADOW AI`          | "A IA já entrou pela porta dos fundos"                          |
+| `03 MANIFESTO`          | Texto que acende palavra por palavra                            |
+| `04 QUEM SOMOS`         | Apresentação da empresa                                         |
+| `05 ORQUESTRA`          | Os três movimentos do método                                    |
+| `06 SERVIÇOS`           | Conexão IA · Treinamentos InCompany · Fluênc.IA                 |
+| `07 DIAGNÓSTICO`        | Os quatro pilares + o radar                                     |
+| `08 FLUENC.IA`          | Plataforma + card das três camadas                              |
+| `09 EM CAMPO`           | Carrossel 3D (cards no array `cards` do JavaScript)             |
+| `10 CASOS DE SUCESSO`   | Aguardando conteúdo                                             |
+| `11 CLIENTES`           | Aguardando logos                                                |
+| `12 MÍDIA`              | Aguardando fotos e vídeos                                       |
+| `13 AMAZONIA`           | Latitude 0° e a lista de parceiros (`#parceiros`)               |
+| `14 LIDERES`            | Diretoria                                                       |
+| `15 RECURSOS`           | E-book, podcast e entrevista                                    |
+| `16 LOCALIZAÇÃO`        | Endereço + canais de contato (`#contato`)                       |
+| `17 CTA`                | Chamada final para o diagnóstico                                |
+
+> ### Atenção: duas cidades no site
+>
+> O endereço da seção Localização é **Florianópolis/SC** (Av. Hercílio Luz, 639).
+> O resto do site continua posicionado na **Amazônia/Macapá**: o rodapé, as coordenadas
+> do canto da tela, a seção "Latitude 0°", o "nascido em Macapá" do Quem somos e os
+> dados estruturados de SEO. Confirme com o cliente se Florianópolis é um segundo
+> escritório (aí está certo como está) ou se a empresa mudou de sede — nesse caso
+> todo o texto de posicionamento precisa ser revisto.
+
+### Conteúdo que falta do cliente
+
+Procure por `TODO cliente` no `index.html` — são 7 marcações:
+
+| Onde            | O que falta                                                        |
+|-----------------|--------------------------------------------------------------------|
+| Quem somos      | História da empresa, ano de fundação, números                       |
+| Serviços        | Descrição completa, formato, carga horária e investimento           |
+| Casos de sucesso| Para cada caso: empresa, desafio, o que foi feito, resultado        |
+| Clientes        | Logos em `img/clientes/`, trocando cada `.slot` por uma `<img>`     |
+| Mídia           | Fotos e vídeos em `img/midia/`, mesma troca                         |
+| Localização     | Horário de atendimento                                               |
+| Contato         | E-mail comercial e telefone fixo, se houver                          |
+
+As pastas `img/clientes/` e `img/midia/` já existem, vazias.
+Enquanto não houver conteúdo, essas três seções mostram caixas "Em breve".
+Para esconder uma delas até lá, adicione `hidden` na tag `<section>` e remova o item correspondente do menu.
+
+**WhatsApp:** o número `(12) 99661-0118` aparece em 6 lugares do `index.html` (menu, diagnóstico, CTA final e contato).
+Para trocar, busque por `5512996610118`.
 
 **Cores da marca** ficam no topo do CSS, no bloco `:root` (`--violet`, `--lilac`, `--void`, `--bone`).
 
@@ -131,6 +167,8 @@ E acessar `http://localhost:8000`.
 ## Notas técnicas
 
 - **Responsivo:** três faixas de ajuste (≤819px, ≤560px, ≤400px). No celular o método ORQUESTRA empilha na vertical, o tilt 3D dos cards passa a ser guiado pelo scroll e há menu hamburguer com overlay.
+- **Sem travamento de rolagem:** nenhuma seção prende a tela. O carrossel do "Em campo" gira sozinho e aceita arrastar ou as setas.
+- **Menu:** em tela cheia, acionado pelo ícone no topo em qualquer tamanho de tela. Lista única; só "Serviços" tem subitens (Conexão IA, Treinamentos InCompany, Fluênc.IA).
 - **Performance no celular:** menos partículas no WebGL, `pixelRatio` reduzido, menos blur e `backdrop-filter` desligado onde pesava.
 - **Acessibilidade:** respeita `prefers-reduced-motion` — com a opção "reduzir movimento" ligada no sistema, o loader e as animações são desativados e o conteúdo aparece direto.
 - **Sem WebGL:** se o dispositivo não suportar, o fundo de partículas simplesmente não é desenhado; o site continua funcionando.
